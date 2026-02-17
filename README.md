@@ -81,15 +81,28 @@ This fork adds comprehensive tooling and interfaces to make Find3D easier to use
 
 ## 🚀 Quick Start <a name="quick-start"></a>
 
-### Launch the Web Interface (Easiest)
+### Launch the Web Interface (Using uv - Easiest!)
 
 ```bash
 cd /path/to/Find3D
-source .venv/bin/activate  # Activate environment
-python gradio_app.py
+uv run find3d
+```
+
+Or directly with Python:
+```bash
+uv run python gradio_app.py
 ```
 
 Then open: **http://localhost:7860**
+
+### Launch with Traditional Methods
+
+**Using conda/venv environment:**
+```bash
+cd /path/to/Find3D
+source .venv/bin/activate  # or: conda activate find3d
+python gradio_app.py
+```
 
 **Two tabs available:**
 1. **🔄 Converter**: Upload 3D models → Download point clouds
@@ -104,8 +117,8 @@ python generate_example_models.py
 # See converted examples
 ls converted/*.pcd
 
-# Launch interface with examples
-python gradio_app.py
+# Launch interface
+uv run find3d
 ```
 
 **Try this workflow:**
@@ -165,6 +178,9 @@ python test_gradio_setup.py
 python test_converter_setup.py
 
 # Both should show: ✅ ALL TESTS PASSED
+
+# Quick launch test (using uv)
+uv run find3d
 ```
 
 ### Optional: Build Pointcept from Source

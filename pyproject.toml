@@ -60,6 +60,9 @@ optional-dependencies = {
     ]
 }
 
+[project.scripts]
+find3d = "gradio_app:main"
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["common", "model", "dataengine"]

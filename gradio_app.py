@@ -549,7 +549,8 @@ def create_interface():
     return demo
 
 
-if __name__ == "__main__":
+def main():
+    """Main entry point for launching the Gradio interface"""
     print(f"🚀 Starting Find3D Gradio Interface")
     print(f"📍 Device: {_device}")
     print(f"✓ CUDA available: {torch.cuda.is_available()}")
@@ -565,4 +566,8 @@ if __name__ == "__main__":
         show_error=True,
         theme=gr.themes.Soft(),
     )
+
+
+if __name__ == "__main__":
+    main()
 
