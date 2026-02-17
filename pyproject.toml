@@ -9,7 +9,7 @@ description = "Find Any Part in 3D - ICCV 2025"
 readme = "README.md"
 license = "Apache-2.0"
 authors = [{name = "Ziqi Ma"}]
-requires-python = ">=3.9"
+requires-python = ">=3.10,<3.11"
 
 dependencies = [
     # Core PyTorch (> 2.7)
@@ -20,9 +20,8 @@ dependencies = [
     # PyTorch Geometric - core package (dependencies handled internally)
     "torch-geometric>=2.4.0",
     
-    # Model dependencies
+    # Model dependencies - spconv-cu12 not available on PyPI, use cu118 or sources
     "xformers>=0.0.27",
-    "spconv-cu12>=2.3.0",
     
     # Utilities
     "omegaconf>=2.3.0",
@@ -59,9 +58,6 @@ optional-dependencies = {
         "isort>=5.12.0",
     ]
 }
-
-[project.scripts]
-find3d = "gradio_app:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
