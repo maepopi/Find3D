@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "find3d"
+version = "0.1.0"
+description = "Find Any Part in 3D - ICCV 2025"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{name = "Ziqi Ma"}]
+requires-python = ">=3.9"
+
+dependencies = [
+    # Core PyTorch (> 2.7)
+    "torch>=2.7.0",
+    "torchvision>=0.18.0",
+    "torchmetrics>=0.10.3",
+    
+    # PyTorch Geometric - core package (dependencies handled internally)
+    "torch-geometric>=2.4.0",
+    
+    # Model dependencies
+    "xformers>=0.0.27",
+    "spconv-cu12>=2.3.0",
+    
+    # Utilities
+    "omegaconf>=2.3.0",
+    "iopath>=0.1.10",
+    "h5py>=3.8.0",
+    "pyyaml>=6.0.0",
+    "sharedarray>=3.2.3",
+    "tensorboard>=2.14.0",
+    "tensorboardX>=2.6.2",
+    "yapf>=0.32.0",
+    "addict>=2.4.0",
+    "einops>=0.7.0",
+    "scipy>=1.10.0",
+    "plyfile>=1.0.0",
+    "termcolor>=2.3.0",
+    "timm>=0.9.0",
+    "transformers>=4.34.0",
+    "open3d>=0.17.0",
+    "sentencepiece>=0.2.0",
+    
+    # Additional utilities
+    "requests>=2.30.0",
+    "pillow>=10.0.0",
+    "numpy>=1.24.0",
+    
+    # Web UI
+    "gradio>=4.0.0",
+]
+
+optional-dependencies = {
+    dev = [
+        "pytest>=7.0",
+        "black>=23.0",
+        "isort>=5.12.0",
+    ]
+}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["common", "model", "dataengine"]
+exclude = ["tests", "media"]
+
+[tool.uv]
+# Use the Python index to find these dependencies
+prerelease = "allow"

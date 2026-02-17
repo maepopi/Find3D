@@ -13,7 +13,17 @@ import math
 import torch
 import torch.nn as nn
 import spconv.pytorch as spconv
-import torch_scatter
+
+# Import torch_scatter compatibility shim (falls back to torch_geometric if needed)
+try:
+    import torch_scatter
+except ImportError:
+    from torch_scatter_compat import segment_csr
+    # Create a mock module
+    class MockTorchScatter:
+        segment_csr = staticmethod(segment_csr)
+    torch_scatter = MockTorchScatter()
+
 from timm.models.layers import DropPath
 from collections import OrderedDict
 import numpy as np
@@ -341,7 +351,14 @@ class SerializedAttention(PointModule):
         self.upcast_attention = upcast_attention
         self.upcast_softmax = upcast_softmax
         self.enable_rpe = enable_rpe
+        
+        # Disable flash attention if not available
+        if enable_flash and flash_attn is None:
+            print("Warning: flash_attn not installed, disabling Flash Attention (using standard attention instead)")
+            enable_flash = False
+        
         self.enable_flash = enable_flash
+        
         if enable_flash:
             assert (
                 enable_rpe is False
@@ -352,7 +369,6 @@ class SerializedAttention(PointModule):
             assert (
                 upcast_softmax is False
             ), "Set upcast_softmax to False when enable Flash Attention"
-            assert flash_attn is not None, "Make sure flash_attn is installed."
             self.patch_size = patch_size
             self.attn_drop = attn_drop
         else:

@@ -142,7 +142,19 @@ def encode_text(texts):
     for key in inputs:
         inputs[key] = inputs[key].cuda()
     with torch.no_grad():
-        text_feat = siglip.cuda().get_text_features(**inputs)
+        output = siglip.cuda().get_text_features(**inputs)
+    
+    # Handle both tensor and model output formats
+    if hasattr(output, 'last_hidden_state'):
+        text_feat = output.last_hidden_state[:, 0]  # CLS token
+    elif hasattr(output, 'pooler_output'):
+        text_feat = output.pooler_output
+    elif isinstance(output, torch.Tensor):
+        text_feat = output
+    else:
+        # Fallback: try to get the tensor attribute
+        text_feat = output if isinstance(output, torch.Tensor) else output[0]
+    
     text_feat = text_feat / (text_feat.norm(dim=-1, keepdim=True) + 1e-12)
     return text_feat
 
