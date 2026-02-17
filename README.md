@@ -85,15 +85,19 @@ This fork adds comprehensive tooling and interfaces to make Find3D easier to use
 
 ```bash
 cd /path/to/Find3D
-uv run find3d
+find3d
 ```
 
-Or directly with Python:
+The interface opens at **http://localhost:7860**
+
+**Alternative methods:**
 ```bash
-uv run python gradio_app.py
-```
+# Run directly with Python
+python cli/gradio_app.py
 
-Then open: **http://localhost:7860**
+# Or using uv run
+uv run python cli/gradio_app.py
+```
 
 ### Launch with Traditional Methods
 
@@ -101,7 +105,7 @@ Then open: **http://localhost:7860**
 ```bash
 cd /path/to/Find3D
 source .venv/bin/activate  # or: conda activate find3d
-python gradio_app.py
+python cli/gradio_app.py
 ```
 
 **Two tabs available:**
@@ -118,7 +122,7 @@ python generate_example_models.py
 ls converted/*.pcd
 
 # Launch interface
-uv run find3d
+find3d
 ```
 
 **Try this workflow:**
@@ -179,8 +183,9 @@ python test_converter_setup.py
 
 # Both should show: ✅ ALL TESTS PASSED
 
-# Quick launch test (using uv)
-uv run find3d
+# Quick launch test
+find3d
+# Should open http://localhost:7860 in your browser
 ```
 
 ### Optional: Build Pointcept from Source
