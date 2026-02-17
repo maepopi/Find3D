@@ -59,9 +59,12 @@ optional-dependencies = {
     ]
 }
 
+[project.scripts]
+find3d = "cli.main:run"
+
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["common", "model", "dataengine"]
+include = ["common", "model", "dataengine", "cli"]
 exclude = ["tests", "media"]
 
 [tool.uv]

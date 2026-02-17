@@ -22,6 +22,10 @@ from model.evaluation.utils import (
 )
 
 # Import 3D to PCD converter
+import sys
+from pathlib import Path
+parent_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(parent_dir))
 from convert_3d_to_pcd import convert_3d_to_pcd
 
 # Global model cache

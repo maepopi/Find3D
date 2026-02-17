@@ -1,2 +1,2 @@
 [console_scripts]
-find3d = gradio_app:main
+find3d = cli.main:run

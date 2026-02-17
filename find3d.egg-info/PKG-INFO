@@ -12,7 +12,6 @@ Requires-Dist: torchvision>=0.18.0
 Requires-Dist: torchmetrics>=0.10.3
 Requires-Dist: torch-geometric>=2.4.0
 Requires-Dist: xformers>=0.0.27
-Requires-Dist: spconv-cu12>=2.3.0
 Requires-Dist: omegaconf>=2.3.0
 Requires-Dist: iopath>=0.1.10
 Requires-Dist: h5py>=3.8.0
